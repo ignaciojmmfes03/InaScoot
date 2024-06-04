@@ -5,7 +5,6 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 CORS(app)
 
-# Datos de los jugadores organizados en un diccionario
 jugadores = {
     "Hiroto Carson": {
         "nombre": "Hiroto Carson",
@@ -114,7 +113,7 @@ jugadores = {
         "obtencion": "pachanga",
         "equipo": "Enemigos del peine",
         "supertecnicas": ["Equilibrismo, Hojarasca, Niebla venenosa , Espejismo"],
-        "imagen_url": "https://m.media-amazon.com/images/S/pv-target-images/c8f317b2b396ce317e020fd6de2e5f9e9be53606e5e5aa8810498671b30c5a83.png"
+        "imagen_url": "https://tiermaker.com/images/template_images/2022/15400895/jugadores-inazuma-eleven-1-2-y-3-megalocke-15400895/calvo-canon.png"
     },
     "Slinka Chauncey Slinka": {
         "nombre": "Slinka Chauncey Slinka",

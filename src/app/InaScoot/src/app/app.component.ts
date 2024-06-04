@@ -7,6 +7,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   jugadores: any[] = [];
   filteredJugadores: any[] = [];
   searchTerm: string = '';

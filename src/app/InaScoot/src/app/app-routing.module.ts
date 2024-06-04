@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent },
-  { path: '**', redirectTo: '' } // Redirigir cualquier ruta no encontrada a la raíz
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
