@@ -17,10 +17,12 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
+  // Método que se ejecuta al inicializar el componente
   ngOnInit() {
     this.fetchJugadores();
   }
 
+  // Método para obtener la lista de jugadores desde la API
   fetchJugadores() {
     this.http.get<any[]>('http://127.0.0.1:5000/jugadores').subscribe({
       next: data => {
@@ -33,6 +35,7 @@ export class AppComponent implements OnInit {
     });
   }
 
+  // Método para filtrar los jugadores según el término de búsqueda
   filterJugadores() {
     const term = this.searchTerm.toLowerCase();
     this.filteredJugadores = this.jugadores.filter(jugador =>
@@ -42,10 +45,14 @@ export class AppComponent implements OnInit {
       jugador.equipo?.toLowerCase().includes(term) ||
       jugador.supertecnica?.toLowerCase().includes(term)
     );
+
+    // Si no se encuentran jugadores, se muestra un mensaje de error y se oculta el fondo
     if (this.filteredJugadores.length === 0) {
       this.errorMessage = 'No se encontraron jugadores';
+      document.body.classList.add('no-results');
     } else {
       this.errorMessage = '';
+      document.body.classList.remove('no-results');
     }
   }
 }

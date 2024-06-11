@@ -1,11 +1,19 @@
-from flask import Flask, jsonify, request
+# Importa las librerías necesarias de Flask y Flask-CORS
+from flask import Flask, jsonify, request 
 from flask_cors import CORS
 
+# Crea una instancia de la aplicación Flask
 app = Flask(__name__)
+
+# Configura la aplicación para estar en modo de depuración
 app.config["DEBUG"] = True
+
+# Habilita CORS (Cross-Origin Resource Sharing) en la aplicación Flask
 CORS(app)
 
+# Diccionario que contiene información sobre los jugadores
 jugadores = {
+    # Cada entrada en el diccionario representa un jugador
     "Hiroto Carson": {
         "nombre": "Hiroto Carson",
         "posicion": "Delantero",
@@ -306,10 +314,13 @@ jugadores = {
     },
 }
 
-
+# Define una ruta para obtener todos los jugadores o realizar una búsqueda filtrada
 @app.route('/jugadores', methods=['GET'])
 def get_todos_los_jugadores():
+     # Obtiene el parámetro de consulta 'query' de la solicitud
     query = request.args.get('query', '').lower()
+    
+    # Si hay una consulta, filtra los jugadores según el parámetro de consulta
     if query:
         resultados = [
             jugador for jugador in jugadores.values() 
@@ -320,7 +331,10 @@ def get_todos_los_jugadores():
             or any(query in tecnica.lower() for tecnica in jugador['supertecnicas'])
         ]
         return jsonify(resultados)
+    
+    # Si no hay consulta, devuelve todos los jugadores
     return jsonify(list(jugadores.values()))
 
+# Inicia la aplicación Flask en modo de depuración
 if __name__ == '__main__':
     app.run(debug=True)

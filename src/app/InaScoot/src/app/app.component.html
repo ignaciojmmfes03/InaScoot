@@ -4,22 +4,28 @@
   <meta charset="utf-8">
   <title>InaScoot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="app.component.css">
 </head>
 <body>
   <div class="container">
+    <!-- Contenedor de la barra de búsqueda -->
     <div class="search-container">
       <input [(ngModel)]="searchTerm" (input)="filterJugadores()" class="input-search" placeholder="Buscar jugadores...">
       <span class="search-icon">&#128269;</span>
     </div>
+
+    <!-- Mensaje de error en caso de no encontrar jugadores -->
     <div *ngIf="errorMessage">
       <p>{{ errorMessage }}</p>
     </div>
+
+    <!-- Lista de jugadores filtrados -->
     <div *ngFor="let jugador of filteredJugadores" class="card">
       <h3>{{ jugador.nombre ? jugador.nombre : 'Nombre no disponible' }}</h3>
       <p>Posición: {{ jugador.posicion }}</p>
       <p>Afinidad: {{ jugador.afinidad }}</p>
       <p>Equipo: {{ jugador.equipo }}</p>
-      <p>Supertécnica: {{ jugador.supertecnicas }}</p>
+      <p>Supertécnica: {{ jugador.supertecnica }}</p>
       <img [src]="jugador.imagen_url" alt="{{ jugador.nombre }}" class="jugador-imagen">
     </div>
   </div>
