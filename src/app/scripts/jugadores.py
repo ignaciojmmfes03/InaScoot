@@ -1,19 +1,12 @@
-# Importa las librerías necesarias de Flask y Flask-CORS
-from flask import Flask, jsonify, request 
+# Creación de la aplicación Flask y configuración para habilitar el modo de depuración y CORS
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-# Crea una instancia de la aplicación Flask
 app = Flask(__name__)
-
-# Configura la aplicación para estar en modo de depuración
 app.config["DEBUG"] = True
-
-# Habilita CORS (Cross-Origin Resource Sharing) en la aplicación Flask
 CORS(app)
 
-# Diccionario que contiene información sobre los jugadores
 jugadores = {
-    # Cada entrada en el diccionario representa un jugador
     "Hiroto Carson": {
         "nombre": "Hiroto Carson",
         "posicion": "Delantero",
@@ -314,13 +307,13 @@ jugadores = {
     },
 }
 
-# Define una ruta para obtener todos los jugadores o realizar una búsqueda filtrada
+# Definición de la función para obtener todos los jugadores o realizar búsquedas
 @app.route('/jugadores', methods=['GET'])
 def get_todos_los_jugadores():
-     # Obtiene el parámetro de consulta 'query' de la solicitud
+    # Obtención del parámetro de consulta 'query' de la URL
     query = request.args.get('query', '').lower()
     
-    # Si hay una consulta, filtra los jugadores según el parámetro de consulta
+    # Si hay una consulta filtrar los jugadores cuyo nombre, posición, afinidad, equipo o supertécnicas coinciden con la consulta
     if query:
         resultados = [
             jugador for jugador in jugadores.values() 
@@ -330,11 +323,9 @@ def get_todos_los_jugadores():
             or query in jugador['equipo'].lower()
             or any(query in tecnica.lower() for tecnica in jugador['supertecnicas'])
         ]
-        return jsonify(resultados)
-    
-    # Si no hay consulta, devuelve todos los jugadores
-    return jsonify(list(jugadores.values()))
+        return jsonify(resultados) # Devolver los resultados de la búsqueda
+    return jsonify(list(jugadores.values()))# Devolver todos los jugadores si no hay consulta
 
-# Inicia la aplicación Flask en modo de depuración
+ # Inicia el servidor de desarrollo de Flask con modo de depuración activado
 if __name__ == '__main__':
     app.run(debug=True)

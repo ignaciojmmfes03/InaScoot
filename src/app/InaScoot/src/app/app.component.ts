@@ -7,37 +7,37 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['../styles.css']
 })
 export class AppComponent implements OnInit {
-  title(title: any) {
-    throw new Error('Method not implemented.');
-  }
   jugadores: any[] = [];
   filteredJugadores: any[] = [];
   searchTerm: string = '';
   errorMessage: string = '';
 
+
   constructor(private http: HttpClient) {}
 
-  // Método que se ejecuta al inicializar el componente
+  // Método ngOnInit que se ejecuta al inicializar el componente
   ngOnInit() {
-    this.fetchJugadores();
+    this.fetchJugadores(); // Llamada al método para obtener los jugadores
   }
 
-  // Método para obtener la lista de jugadores desde la API
+  // Método para obtener los jugadores desde el servidor
   fetchJugadores() {
+    // Realización de una solicitud HTTP GET al servidor
     this.http.get<any[]>('http://127.0.0.1:5000/jugadores').subscribe({
-      next: data => {
-        this.jugadores = data;
-        this.filteredJugadores = data;
+      next: data => { // Callback que se ejecuta en caso de éxito
+        this.jugadores = data; // Asignar los datos obtenidos al arreglo jugadores
+        this.filteredJugadores = data; // Inicializar el arreglo de jugadores filtrados con todos los jugadores
       },
-      error: error => {
-        this.errorMessage = 'No se pudieron cargar los datos. Inténtalo de nuevo más tarde.';
+      error: error => { // Callback que se ejecuta en caso de error
+        this.errorMessage = 'No se pudieron cargar los datos. Inténtalo de nuevo más tarde.'; // Mostrar mensaje de error
       }
     });
   }
 
   // Método para filtrar los jugadores según el término de búsqueda
   filterJugadores() {
-    const term = this.searchTerm.toLowerCase();
+    const term = this.searchTerm.toLowerCase(); // Convertir el término de búsqueda a minúsculas
+    // Filtrar los jugadores según el término de búsqueda
     this.filteredJugadores = this.jugadores.filter(jugador =>
       jugador.nombre?.toLowerCase().includes(term) ||
       jugador.posicion?.toLowerCase().includes(term) ||
@@ -45,14 +45,11 @@ export class AppComponent implements OnInit {
       jugador.equipo?.toLowerCase().includes(term) ||
       jugador.supertecnica?.toLowerCase().includes(term)
     );
-
-    // Si no se encuentran jugadores, se muestra un mensaje de error y se oculta el fondo
+    // Verificar si no se encontraron jugadores
     if (this.filteredJugadores.length === 0) {
-      this.errorMessage = 'No se encontraron jugadores';
-      document.body.classList.add('no-results');
+      this.errorMessage = 'No se encontraron jugadores'; // Mostrar mensaje de error
     } else {
-      this.errorMessage = '';
-      document.body.classList.remove('no-results');
+      this.errorMessage = ''; // Limpiar el mensaje de error
     }
   }
 }
