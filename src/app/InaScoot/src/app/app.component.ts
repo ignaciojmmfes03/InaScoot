@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   // Método para obtener los jugadores desde el servidor
   fetchJugadores() {
     // Realización de una solicitud HTTP GET al servidor
-    this.http.get<any[]>('http://127.0.0.1:5000/jugadores').subscribe({
+    this.http.get<any[]>('http://164.92.233.177:5000/jugadores').subscribe({
       next: data => { // Callback que se ejecuta en caso de éxito
         this.jugadores = data; // Asignar los datos obtenidos al arreglo jugadores
         this.filteredJugadores = data; // Inicializar el arreglo de jugadores filtrados con todos los jugadores

@@ -328,4 +328,4 @@ def get_todos_los_jugadores():
 
  # Inicia el servidor de desarrollo de Flask con modo de depuración activado
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(app, host="0.0.0.0", port=5000)
