@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { JugadoresComponent } from './jugadores/jugadores.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
 
   // Método ngOnInit que se ejecuta al inicializar el componente
   ngOnInit() {
-    this.fetchJugadores(); // Llamada al método para obtener los jugadores
+   /*  this.fetchJugadores(); // Llamada al método para obtener los jugadores */
   }
 
   // Método para obtener los jugadores desde el servidor

@@ -1,0 +1,87 @@
+/* Estilos generales para html y body */
+html, body {
+  /* Imagen de fondo para todo el documento */
+  background-image: url('https://www.nintendo.com/eu/media/images/10_share_images/games_15/nintendo_ds_22/SI_NDS_InazumaEleven_image1600w.jpg');
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Estilos para el cuerpo del documento */
+body {
+  min-height: 100%;
+  font-family: 'Arial', 'sans-serif';
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Estilos para el contenedor principal */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  height: calc(100% - 40px);
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  color: #333;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+/* Estilos para el contenedor de búsqueda */
+.search-container {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/* Estilos para la barra de búsqueda */
+.input-search {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  padding-right: 40px;
+  color: #333;
+}
+/* Estilos para el icono de búsqueda */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #999;
+}
+/* Estilos para las tarjetas de jugadores */
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 20px 0;
+  padding: 15px;
+  transition: all 0.3s ease;
+  color: #333;
+  opacity: 0.8;
+}
+/* Efecto de hover en las tarjetas */
+.card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+/* Estilos para las imágenes de los jugadores */
+.jugador-imagen {
+  width: 15%;
+  height: auto;
+  border-radius: 8px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+/* Efecto de hover en las imágenes de los jugadores */
+.card:hover .jugador-imagen {
+  opacity: 0.7;
+}
